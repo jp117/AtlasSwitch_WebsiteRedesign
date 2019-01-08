@@ -1,0 +1,32 @@
+html, body{
+    height: 100%;
+}
+
+.navbar-nav > li{
+    padding-left: 30px;
+}
+
+nav{
+    height: 5%;
+}
+
+#maincontent{
+    height: 95%;
+    background: url(../sitepics/front.jpg) center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: .9;
+
+}
+
+.indexh1{
+    font-size: 400%;
+    font-weight: bold;
+    text-shadow: 4px 4px black;
+    color:  white;
+    opacity: 1;
+
+}
