@@ -2,16 +2,18 @@ html, body{
     height: 100%;
 }
 
+
 .navbar-nav > li{
     padding-left: 30px;
 }
 
 nav{
-    height: 5%;
+    height: auto;
+    background-color: #AA3939;
 }
 
 #maincontent{
-    height: 95%;
+    height: 94%;
     background: url(../sitepics/front.jpg) center;
     display: flex;
     align-items: center;
@@ -28,5 +30,4 @@ nav{
     text-shadow: 4px 4px black;
     color:  white;
     opacity: 1;
-
 }
