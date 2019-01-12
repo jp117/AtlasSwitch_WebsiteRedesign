@@ -1,4 +1,4 @@
-from puppycompanyblog import db, login_manager
+from AtlasSwitch import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
@@ -32,7 +32,7 @@ class User(db.Model, UserMixin):
         return f'Email {self.email}'
 
 
-class ProductPage(db.model):
+class ProductPage(db.Model):
 
     __tablename__ = 'productpage'
 
@@ -41,7 +41,7 @@ class ProductPage(db.model):
     text = db.Column(db.Text, nullable=False)
 
 
-class Quote(db.model):
+class Quote(db.Model):
 
     __tablename__ = 'quotes'
 
@@ -57,8 +57,3 @@ class Quote(db.model):
         self.revision_num = revision_num
         self.job_name = job_name
         self.job_address = job_address
-
-
-class PanelQuote(db.model):
-
-    __tablename__ = 'panelquotes'
