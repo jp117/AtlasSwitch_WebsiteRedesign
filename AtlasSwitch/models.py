@@ -15,13 +15,14 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    access_level = db.Column(db.Integer)
+    name = db.Column(db.String(30))
+    access_level = db.Column(db.String(15))
     email = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
 
-    posts = db.relationship('BlogPost', backref='author', lazy=True)
-
-    def __init__(self, email, password):
+    def __init__(self, name, email, password, access_level):
+        self.name = name
+        self.access_level = access_level
         self.email = email
         self.password_hash = generate_password_hash(password)
 
@@ -29,7 +30,7 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
-        return f'Email {self.email}'
+        return f'Email {self.email} and access level is {self.access_level}'
 
 
 class ProductPage(db.Model):

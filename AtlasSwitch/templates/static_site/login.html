@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'static_site/base.html' %}
 
 {% block content %}
 <div id='login-div'>
@@ -18,7 +18,9 @@
         <div class='form-group'>
             {{form.submit(class='btn login-btn')}}
         </div>
-            
+       {% if error %}   
+            <p class='error'>Error: {{ error }}</p>  
+       {% endif %}
             
         
     </form>
