@@ -29,6 +29,7 @@ from AtlasSwitch.portfolio.views import portfolio
 from AtlasSwitch.blog.views import blog
 from AtlasSwitch.users.views import users
 from AtlasSwitch.employees_only.views import employees
+from AtlasSwitch.admin.views import admin
 
 
 app.register_blueprint(core)
@@ -36,3 +37,4 @@ app.register_blueprint(portfolio)
 app.register_blueprint(blog)
 app.register_blueprint(users)
 app.register_blueprint(employees)
+app.register_blueprint(admin)

@@ -1,5 +1,5 @@
-<h1>you got here</h1>
+{% extends 'employee_site/base.html' %}
 
-{% if current_user.is_authenticated %}
-  <h1>logged in</h1>
-{% endif %}
+{% block content %}
+<h1>Hope this is in the block</h1>
+{% endblock %}

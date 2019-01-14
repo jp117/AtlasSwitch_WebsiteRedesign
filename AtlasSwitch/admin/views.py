@@ -5,10 +5,11 @@ from flask_login import login_user, logout_user, current_user, login_required
 from AtlasSwitch.users.roles import admin_required
 
 
-employees = Blueprint('employees', __name__)
+admin = Blueprint('admin', __name__)
 
 
-@employees.route('/employees')
+@admin.route('/admin')
 @login_required
-def index():
-    return render_template('employee_site/index.html')
+@admin_required
+def admin_index():
+    return render_template('admin/index.html')
