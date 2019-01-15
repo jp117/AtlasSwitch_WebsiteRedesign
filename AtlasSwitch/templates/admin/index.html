@@ -1,1 +1,50 @@
-<h1>ADMIN SITE</h1>
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class='container'>
+<div class='card-columns'>
+<div class="card p-3" style='min-height: 12rem;'>
+  <div class="card-body">
+    <a href="{{url_for('admin.report_panel')}}">
+        <h5 class="card-title" align="center">Report Panel</h5>
+        <p class="card-text">Creating and viewing reports</p>
+    </a>
+  </div>
+</div>
+<div class="card p-3" style='min-height: 12rem;'>
+  <div class="card-body">
+    <a href="{{url_for('admin.user_panel')}}">
+        <h5 class="card-title" align="center">User Control Panel</h5>
+        <p class="card-text">Viewing, creating, updating and deleting users</p>
+    </a>
+  </div>
+</div>
+<div class="card p-3" style='min-height: 12rem;'>
+  <div class="card-body">
+    <a href="{{url_for('admin.portfolio_panel')}}">
+        <h5 class="card-title" align="center">Portfolio Control Panel</h5>
+        <p class="card-text">Create, edit and delete portfolio posts</p>
+    </a>
+  </div>
+</div>
+<div class="card p-3" style='min-height: 12rem;'>
+  <div class="card-body">
+    <a href="{{url_for('admin.blog_panel')}}">
+        <h5 class="card-title" align="center">Blog Control Panel</h5>
+        <p class="card-text">Create, edit and delete blog posts</p>
+    </a>
+  </div>
+</div>
+<div class="card p-3" style='min-height: 12rem;'>
+  <div class="card-body">
+    <a href="{{url_for('admin.static_panel')}}">
+        <h5 class="card-title" align="center">Static Site Control Panel</h5>
+        <p class="card-text">Create and edit things on the static site that non-employees see.  Ex. History, the team, and products and services</p>
+    </a>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
