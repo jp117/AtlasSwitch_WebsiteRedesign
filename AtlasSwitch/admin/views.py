@@ -1,9 +1,10 @@
 from flask import render_template, Blueprint, url_for, request, redirect, flash
-from AtlasSwitch.models import User
+from AtlasSwitch.models import User, History
 from AtlasSwitch.users.forms import LoginForm
 from flask_login import login_user, logout_user, current_user, login_required
 from AtlasSwitch.users.roles import admin_required
 from AtlasSwitch.users.forms import NewUserForm
+from AtlasSwitch.admin.forms import HistoryForm
 from AtlasSwitch import db
 
 
@@ -78,8 +79,17 @@ def blog_panel():
     return render_template('admin/blog_panel.html')
 
 
-@admin.route('/admin/static_panel')
+@admin.route('/admin/static_panel', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def static_panel():
-    return render_template('admin/static_panel.html')
+    history_post = History.query.get_or_404(1)
+    history = HistoryForm()
+    if history.validate_on_submit():
+        history_post.text = history.text.data
+        db.session.commit()
+        return redirect(url_for('admin.static_panel'))
+    elif request.method == 'GET':
+        history.text.data = history_post.text
+
+    return render_template('admin/static_panel.html', history=history)

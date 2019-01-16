@@ -58,3 +58,13 @@ class Quote(db.Model):
         self.revision_num = revision_num
         self.job_name = job_name
         self.job_address = job_address
+
+
+class History(db.Model):
+    __tablename__ = 'history'
+
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.Text, nullable=False)
+
+    def __init__(self, text):
+        self.text = text

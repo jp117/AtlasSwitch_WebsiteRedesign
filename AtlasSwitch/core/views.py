@@ -1,4 +1,5 @@
 from flask import render_template, Blueprint
+from AtlasSwitch.models import User, History
 
 
 core = Blueprint('core', __name__)
@@ -11,7 +12,8 @@ def index():
 
 @core.route('/history')
 def history():
-    return render_template('static_site/history.html')
+    history = History.query.get(1)
+    return render_template('static_site/history.html', history=history)
 
 
 @core.route('/team')

@@ -1,5 +1,16 @@
 {% extends 'admin/base.html' %}
 
 {% block content %}
-<h1>Forms to update the static site pages</h1>
+<div class='container border' style='margin-top: 15px; padding-top: 15px;'>
+    <form method='POST'>
+        {{history.hidden_tag()}}
+        <div class='form-group'>
+            <label>{{history.text.label}}</label>
+            {{history.text(class='form-control', style='min-height: 150px;')}}
+        </div>
+        <div class='form-group'>
+            {{history.submit(class='btn btn-primary')}}
+        </div>
+    </form>
+</div>
 {% endblock %}

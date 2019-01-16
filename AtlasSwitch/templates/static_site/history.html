@@ -4,10 +4,8 @@
 <div>
     <img width='100%' src="static/sitepics/history1.jpg">
     <div class='container static-content'>
-        <p>
-            Atlas Switch was founded in 1971 by John Paradise in a small warehouse in Long Island City.  After leaving Federal Pacific, where he worked as an engineer, John was committed to building high quality switchgear with the best customer service in the business.  All of these years later, Atlas Switch maintains a reputation for the fastest responsiveness and the highest quality.  After his passing in 2002, his daughter, Gina Paradise took over as the President and CEO.  During her tenure, she has begun initiatives that have led to a modernization of the company's products, technologies and workflows.  
-        </p>
-        
+
+        <p> {{ history.text | safe }}</p>
     </div>
 </div>
 {% endblock %}
