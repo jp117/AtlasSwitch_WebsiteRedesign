@@ -1,0 +1,28 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class='container' style='padding-top: 15px;'>
+    <form method='POST'>
+        {{form.hidden_tag()}}
+        <div class='form-group'>
+            <label>{{form.name.label}}</label>
+            {{form.name(class='form-control')}}
+        </div>
+        <div class='form-group'>
+            <label>{{form.email.label}}</label>
+            {{form.email(class='form-control')}}
+        </div>
+        <div class='form-group'>
+            <label>{{form.password.label}}</label>
+            {{form.password(class='form-control')}}
+        </div>
+        <div class='form-group'>
+            <label>{{form.access_level.label}}</label>
+            {{form.access_level(class='form-control')}}
+        </div>
+        <div class='form-group'>
+            {{form.submit(class='btn btn-primary')}}
+        </div>
+    </form>
+</div>
+{% endblock %}

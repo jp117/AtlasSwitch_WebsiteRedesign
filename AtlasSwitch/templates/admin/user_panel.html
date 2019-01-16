@@ -1,5 +1,52 @@
 {% extends 'admin/base.html' %}
 
 {% block content %}
-<h1>User controls go here</h1>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class='container' style='padding-top: 15px;'>
+    <a href="{{url_for('admin.create_new_user')}}"'><button type="button" class="btn btn-primary">Create New User</button></a>
+</div>
+<div class='container' style='padding-top: 15px;'>
+
+{% for user in users.items %}
+    <div class="card" >
+      <div class="card-body">
+        <a href="#"><button class='btn btn-outline-secondary float-right'>Update</button></a>
+        <h2>{{ user.name }}</h2> 
+        <p>Email: {{ user.email }}</p>  
+        <button class='btn btn-danger float-right' data-toggle='modal' data-target='#del_modal{{user.id}}'>
+            Delete
+        </button>
+        <p>Access level: {{ user.access_level }}</p>
+      </div>
+
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id='del_modal{{user.id}}'>
+      <div class="modal-dialog" id='{{id}}' role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete User?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete {{user.name}}? </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <form action='{{url_for("admin.delete_user", user_id=user.id)}}'>
+                <input type="submit" value="Delete" class='btn btn-danger'>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>    
+{% endfor %}
+</div>
 {% endblock %}
