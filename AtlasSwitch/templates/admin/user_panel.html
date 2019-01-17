@@ -1,13 +1,6 @@
 {% extends 'admin/base.html' %}
 
 {% block content %}
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            <h3>{{ message }}</h3>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
 <div class='container' style='padding-top: 15px;'>
     <a href="{{url_for('admin.create_new_user')}}"'><button type="button" class="btn btn-primary">Create New User</button></a>
 </div>

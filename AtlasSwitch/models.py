@@ -68,3 +68,12 @@ class History(db.Model):
 
     def __init__(self, text):
         self.text = text
+
+
+class PandS(db.Model):
+    __tablename__ = 'pands'
+
+    id = db.Column(db.Integer, primary_key=True)
+    image = db.Column(db.String(128), nullable=False)
+    name = db.Column(db.String(64), nullable=False)
+    description = db.Column(db.Text, nullable=False)

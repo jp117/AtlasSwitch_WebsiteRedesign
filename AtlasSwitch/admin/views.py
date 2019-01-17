@@ -1,11 +1,12 @@
 from flask import render_template, Blueprint, url_for, request, redirect, flash
-from AtlasSwitch.models import User, History
+from AtlasSwitch.models import User, History, PandS
 from AtlasSwitch.users.forms import LoginForm
 from flask_login import login_user, logout_user, current_user, login_required
 from AtlasSwitch.users.roles import admin_required
 from AtlasSwitch.users.forms import NewUserForm
-from AtlasSwitch.admin.forms import HistoryForm
+from AtlasSwitch.admin.forms import HistoryForm, PandSForm
 from AtlasSwitch import db
+from AtlasSwitch.admin.picture_handler import product_pic
 
 
 admin = Blueprint('admin', __name__)
@@ -59,10 +60,7 @@ def delete_user(user_id):
         db.session.delete(user)
         db.session.commit()
         return redirect(url_for('admin.user_panel'))
-    else:
-        error = 'Cannot delete yourself'
-        flash(error)
-    return redirect(url_for('admin.user_panel', error=error))
+    return redirect(url_for('admin.user_panel'))
 
 
 @admin.route('/admin/portfolio_panel')
@@ -85,11 +83,27 @@ def blog_panel():
 def static_panel():
     history_post = History.query.get_or_404(1)
     history = HistoryForm()
-    if history.validate_on_submit():
+    if history.submit.data and history.validate():
         history_post.text = history.text.data
         db.session.commit()
         return redirect(url_for('admin.static_panel'))
-    elif request.method == 'GET':
+
+    page = request.args.get('page', 1, type=int)
+    pands_post = PandS.query.order_by(PandS.id.asc()).paginate(page=page, per_page=20)
+    new_pands = PandSForm()
+    new_pands.submitpands.label.text = 'Create New Product or Service'
+
+    if new_pands.submitpands.data and new_pands.validate():
+        pic = product_pic(new_pands.image.data, new_pands.name.data)
+        new_prod = PandS(name=new_pands.name.data,
+                         description=new_pands.text.data,
+                         image=pic)
+        db.session.add(new_prod)
+        db.session.commit()
+        return redirect(url_for('admin.static_panel'))
+
+    if request.method == 'GET':
         history.text.data = history_post.text
 
-    return render_template('admin/static_panel.html', history=history)
+    return render_template('admin/static_panel.html', history=history, pands_post=pands_post,
+                           new_pands=new_pands)
