@@ -107,3 +107,13 @@ def static_panel():
 
     return render_template('admin/static_panel.html', history=history, pands_post=pands_post,
                            new_pands=new_pands)
+
+
+@admin.route('/admin/delete_pands/<int:pands_id>', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def delete_pands(pands_id):
+    pands = PandS.query.get(pands_id)
+    db.session.delete(pands)
+    db.session.commit()
+    return redirect(url_for('admin.static_panel'))

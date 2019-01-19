@@ -33,15 +33,6 @@ class User(db.Model, UserMixin):
         return f'Email {self.email} and access level is {self.access_level}'
 
 
-class ProductPage(db.Model):
-
-    __tablename__ = 'productpage'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(32), unique=True)
-    text = db.Column(db.Text, nullable=False)
-
-
 class Quote(db.Model):
 
     __tablename__ = 'quotes'

@@ -10,6 +10,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/mainpage.css')}}">
 
+    {% block head %}
+
+    {% endblock %}
+
 </head>
 <body>
     <nav class='navbar navbar-expand-lg navbar-dark static-top navbar-fixed-top header-wrapper'>
@@ -71,7 +75,7 @@
       Phone: <a href="tel:5162226280">(516) 222-6280</a><br>
       Email: <a href="mailto:info@atlasswitch.com">info@atlasswitch.com</a></div>
   </aside>
-  <div class='container text-center' id='copy'>&copy; Atlas Switch</div>
+  <div class='container text-center' id='copy'>&copy; {{ now.year }}  Atlas Switch</div>
 </div>
 </body>
 </html>
