@@ -21,22 +21,26 @@
 </div>
 <br>
 <div class='container'>
+  <div class='row'>
 {% for prod in pands_post.items %}
-<div class="card">
-  <h5 class="card-header">{{prod.name}}</h5>
-  <div class="card-body">
-    <div class='float-right'>
-        <img src="{{ url_for('static', filename='sitepics/pands_pics/' + prod.image)}}">
+<div class='column col-md-6 col-lg-4' style="margin-top: 5px;">
+    <div class="card h-100">
+      <h5 class="card-header">{{prod.name}}</h5>
+      <img src="{{ url_for('static', filename='sitepics/pands_pics/' + prod.image)}}" class='card-img-top' style='height: 250px;'> 
+      <div class="card-body d-flex flex-column" >
+            
+        <p class="card-text" style='margin-top: auto'>{{prod.description[0:50]}}...</p>
+        <div class='row'><button class='btn btn-secondary' data-toggle='modal' data-target='#update_modal{{prod.id}}' style="width: 50%;">
+                Update
+            </button>
+      <button class='btn btn-danger' data-toggle='modal' data-target='#del_modal{{prod.id}}' style="width: 50%;">
+                Delete
+            </button></div>
+              
+      </div>
+
     </div>
-    <p class="card-text">{{prod.description}}</p>
-  </div>
-  <button class='btn btn-danger float-right' data-toggle='modal' data-target='#del_modal{{prod.id}}'>
-            Delete
-        </button>
-
 </div>
-
-<br>
     <div class="modal" tabindex="-1" role="dialog" id='del_modal{{prod.id}}'>
       <div class="modal-dialog" id='{{id}}' role="document">
         <div class="modal-content">
@@ -59,6 +63,7 @@
       </div>
     </div> 
 {% endfor %}
+</div>
 </div>
 <br>
 

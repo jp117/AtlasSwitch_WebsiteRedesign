@@ -2,9 +2,15 @@ from flask import render_template, Blueprint, url_for, request, redirect
 from AtlasSwitch.models import User
 from AtlasSwitch.users.forms import LoginForm
 from flask_login import login_user, logout_user, current_user, login_required
+from datetime import datetime
 
 
 users = Blueprint('users', __name__)
+
+
+@users.context_processor
+def inject_now():
+    return {'now': datetime.utcnow()}
 
 
 @users.route('/logout')
@@ -18,7 +24,7 @@ def login():
     form = LoginForm()
     error = None
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(email=form.email.data.lower()).first()
         if user is not None and user.check_password(form.password.data):
             login_user(user)
             next = request.args.get('next')

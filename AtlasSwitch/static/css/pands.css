@@ -1,4 +1,6 @@
 .column{
     margin-top: 5px;
     margin-bottom: 5px;
+    min-width: 310px;
+    max-width: 310px;
 }

@@ -1,9 +1,14 @@
 html, body{
-    height: 100%;
     padding: 0;
     margin: 0;
+    
 }
 
+.test{
+    position: relative;
+    min-height: 100vh;
+    min-width: 100vw;
+}
 
 .navbar-nav > li{
     padding-left: 30px;
@@ -15,7 +20,7 @@ nav{
 }
 
 #maincontent{
-    height: 94%;
+    height: 100vh;
     background: url(../sitepics/front.jpg) center;
     display: flex;
     align-items: center;

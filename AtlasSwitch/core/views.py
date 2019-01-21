@@ -33,8 +33,3 @@ def products_and_services():
     page = request.args.get('page', 1, type=int)
     pands = PandS.query.order_by(PandS.id.asc()).paginate(page=page, per_page=20)
     return render_template('static_site/pands.html', pands=pands)
-
-
-@core.route('/contact')
-def contact():
-    return render_template('static_site/contact.html')

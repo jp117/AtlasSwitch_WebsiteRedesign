@@ -42,7 +42,7 @@ def create_new_user():
     form = NewUserForm()
     if form.validate_on_submit():
         new_user = User(name=form.name.data,
-                        email=form.email.data,
+                        email=form.email.data.lower(),
                         access_level=form.access_level.data,
                         password=form.password.data)
         db.session.add(new_user)
