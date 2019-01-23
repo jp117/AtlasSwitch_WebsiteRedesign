@@ -1,7 +1,7 @@
 from AtlasSwitch import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from datetime import datetime
+import datetime
 
 
 # Have to relook up what this does
@@ -42,7 +42,7 @@ class Quote(db.Model):
     revision_num = db.Column(db.Integer)
     job_name = db.Column(db.String(128))
     job_address = db.Column(db.String(128))
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.date.today())
 
     def __init__(self, quote_num, revision_num, job_name, job_address):
         self.quote_num = quote_num
@@ -68,3 +68,34 @@ class PandS(db.Model):
     image = db.Column(db.String(128), nullable=False)
     name = db.Column(db.String(64), nullable=False)
     description = db.Column(db.Text, nullable=False)
+
+
+class FollowUp(db.Model):
+    __tablename__ = 'followup'
+
+    id = db.Column(db.Integer, primary_key=True)
+    salesman = db.Column(db.String(64), nullable=False)
+    jobname = db.Column(db.String(128))
+    job_address = db.Column(db.String(128))
+    amount = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.date.today())
+    nextfollowup = db.Column(db.DateTime, nullable=False, default=datetime.date.today() + datetime.timedelta(days=7))
+    notes = db.Column(db.Text)
+    stoptracking = db.Column(db.Boolean, nullable=False, default=False)
+    closed = db.Column(db.String(64))
+
+
+class Customer(db.Model):
+
+    __tablename__ = 'customer'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), nullable=False)
+    street = db.Column(db.String(128))
+    city = db.Column(db.String(128))
+    state = db.Column(db.String(32))
+    zipcode = db.Column(db.Integer)
+    phone = db.Column(db.String(11))
+    revenue = db.Column(db.Integer)
+    custclass = db.Column(db.String(32), nullable=False)
+    notes = db.Column(db.Text)

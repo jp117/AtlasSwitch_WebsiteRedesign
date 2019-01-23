@@ -1,0 +1,51 @@
+{% extends 'employee_site/base.html' %}
+
+{% block content %}
+<div class='container'>
+    <div class='row'>
+        <div class='col-sm-12, col-md-6 col-lg-4 container mt-2'>
+            <button class='btn' data-toggle='modal' data-target='#new_quote_modal' style='background: #801515; color: white; width: 100%; font-size: 1.5rem;'>
+            New Quote
+        </button>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id='new_quote_modal'>
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">New Quote</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{newquote.hidden_tag()}}
+                <div class='form-group'>
+                    {{newquote.jobname(placeholder=newquote.jobname.label.text)}}
+                </div>
+                <div class='form-group'>
+                    {{newquote.jobaddress(placeholder=newquote.jobaddress.label.text)}}
+                </div>
+                <div class='form-group'>
+
+                    {{newquote.amount(placeholder=newquote.amount.label.text)}}
+                </div>
+                <div class='form-group'>
+                    {{newquote.followdate()}}<br>
+                    <label>{{newquote.followdate.label}}</label>
+                </div>
+                <div class='form-group'>
+                    {{newquote.notes(rows=10, cols='50', placeholder=newquote.notes.label.text) |safe }}
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <form action='#'>
+                    <input type="submit" value="Submit" class='btn btn-danger'>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>    
+    </div>
+</div>
+{% endblock %}

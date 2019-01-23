@@ -18,6 +18,16 @@
           </button>
           <div class='collapse navbar-collapse' id='navbarContent'>
             <ul class='navbar-nav ml-auto'>
+                {% if current_user.access_level=='admin' or current_user.access_level == 'sales' %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle='dropdown' role='button' aria-haspopup="true" aria-expanded="false"">Sales</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{{url_for('employees.sales')}}">Sales Home</a>
+                      <a class="dropdown-item" href="{{url_for('employees.quote')}}">Quote</a>
+                      <a class="dropdown-item" href="{{url_for('employees.crm')}}">CRM</a>
+                    </div>
+                  </li>
+                {% endif %}
                 {% if current_user.access_level=='admin' %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('admin.admin_index')}}">Admin</a>

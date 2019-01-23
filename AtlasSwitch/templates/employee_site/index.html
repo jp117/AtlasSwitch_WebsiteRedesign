@@ -6,7 +6,7 @@
 
     {% if current_user.access_level=='admin' or current_user.access_level =='sales' %}
     <div class='col-sm-12 col-md-6 col-lg-4' style='margin-top: 15px;'/>
-        <a href="#" style='text-decoration: none; color: black;'>
+        <a href="{{url_for('employees.sales')}}" style='text-decoration: none; color: black;'>
             <div class='card' style='height: 12rem;'>
                 <h5 class='card-header'>Sales</h5>
                 <div class='card-body'>
@@ -18,7 +18,7 @@
     {% endif %}
 
     <div class='col-sm-12 col-md-6 col-lg-4' style='margin-top: 15px;'/>
-        <a href="#" style='text-decoration: none; color: black;'>
+        <a href="{{url_for('employees.advisory_board')}}" style='text-decoration: none; color: black;'>
             <div class='card' style='height: 12rem;'>
                 <h5 class='card-header'>Advisory Board</h5>
                 <div class='card-body'>
@@ -29,7 +29,7 @@
     </div>
     {% if current_user.access_level=='admin' or current_user.access_level =='engineer' %}
     <div class='col-sm-12 col-md-6 col-lg-4' style='margin-top: 15px;'/>
-        <a href="#" style='text-decoration: none; color: black;'>
+        <a href="{{url_for('employees.engineering')}}" style='text-decoration: none; color: black;'>
             <div class='card' style='height: 12rem;'>
                 <h5 class='card-header'>Engineering</h5>
                 <div class='card-body'>
