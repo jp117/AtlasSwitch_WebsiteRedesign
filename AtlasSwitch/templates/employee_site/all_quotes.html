@@ -1,0 +1,14 @@
+{% extends 'employee_site/base.html' %}
+
+{% block content %}
+<div class='container' style='margin-top: 10px;'>
+{% for quote in quotes.items %}
+
+<div class='card' style='margin-top: 10px; margin-bottom: 10px;'>
+    <h5 class='card-header'>{{ quote.id }}</h5>
+    <div> Stuff </div>
+</div>
+
+{% endfor %}
+</div>
+{% endblock %}
